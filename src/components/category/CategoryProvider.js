@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, createContext } from "react";
 
-export const CategoryContext = React.createContext();
+export const CategoryContext = createContext();
 
 export const CategoryProvider = (props) => {
     const [categories, setCategories] = useState([]); 
@@ -35,7 +35,10 @@ export const CategoryProvider = (props) => {
 
     const removeCategory = categoryId => {
         return fetch(`http://localhost:8000/categories/${categoryId}`, {
-            method: "DELETE"
+            method: "DELETE",
+            headers: {
+                Authorization: `Token ${localStorage.getItem("dd_token")}`,
+            },
         })
         .then(getCategories)
     }

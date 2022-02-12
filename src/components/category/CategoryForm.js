@@ -4,15 +4,13 @@ import { CategoryContext } from "./CategoryProvider";
 
 export const CategoryForm = () => {
     const history = useHistory();
-    const { createCategory, getCategories } = useContext(CategoryContext)
+    const { createCategory } = useContext(CategoryContext)
+    
 
-    const [currentCategory, setCurrentCategory] = useState({
+    const [ currentCategory, setCurrentCategory] = useState({
         label: ""
     });
-
-    useEffect(() => {
-        getCategories();
-    }, []);
+    
      const changeCategoryLabelState = (event) => {
          const newCategoryState = { ...currentCategory };
          newCategoryState.label = event.target.value;
@@ -36,7 +34,7 @@ export const CategoryForm = () => {
                       />
                  </div>
              </fieldset>
-             <button
+            <button
                 type="submit"
                 onClick={(evt) => {
                 evt.preventDefault();
@@ -48,9 +46,9 @@ export const CategoryForm = () => {
                 createCategory(category).then(() => history.push("/categories"))
                 }}
                 className="btn btn-primary"
-             >
-               Create Category
-             </button> 
+                >
+                Create Category
+            </button> 
          </form>
      );
 };
