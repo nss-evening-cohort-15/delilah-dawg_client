@@ -11,7 +11,7 @@ export const TagList = (props) => {
   const history = useHistory();
 
   const isAdmin = (tagId) => {
-    if (profile.rareuser?.user.is_superuser) {
+    if (!profile.rareuser?.user.is_staff) {
       return (
         <>
           <button className="edit" onClick={() => history.push(`/tags/${tagId}/edit`)}>Edit</button>

@@ -18,13 +18,18 @@ export const TagDetail = (props) => {
   }
 
   const handleSaveTag = () => {
-
     if (tagId) {
       editTag({
         id: currentTag.id,
         label: currentTag.label
       })
-        .then(() => history.push(`/tags`))
+        .then((res) => {
+          if (res.status === 401) {
+            window.alert("You can't do that!")
+          } else {
+            history.push(`/tags`)
+          }
+        })
     }
   }
 

@@ -54,7 +54,12 @@ export const TagProvider = (props) => {
       },
       body: JSON.stringify(tag)
     })
-    .then(getTags);
+    .then(res => {
+      getTags()
+
+      return res
+    
+    });
   }
 
   return (
